@@ -129,6 +129,7 @@ function getPasswordOptions() {
   "Click OK to confirm that the password must contain uppercase characters"
  )
  
+ //Run boolean on characters
 
 if(hasSpecialCharacters === false &&
   hasNumericCharacters === false &&
