@@ -19,11 +19,11 @@ I have used HTML, CSS and JavaScript to create a password generator. The console
 
 ## Deployed Link:
 
-
+https://bronwen27.github.io/Password-Generator-App/
 
 ### Repository Link:
 
-
+https://github.com/Bronwen27/Password-Generator-App
 
 
 
