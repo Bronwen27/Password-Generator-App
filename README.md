@@ -29,7 +29,7 @@ I have used HTML, CSS and JavaScript to create a password generator. The console
 
 ## Usage
 
-
+! [img of JavaScript coding in relation to live password generator and console. ](..assets/Screenshot.png)
 
 ## License
 
