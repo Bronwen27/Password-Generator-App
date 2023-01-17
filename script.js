@@ -97,10 +97,11 @@ function getPasswordOptions() {
   prompt("How many Characters would you like in your password? Please choose between 10 and 64")
  )
  // Incase user uses any other characters other than numbers  
- if(isNaN(length)===true){
+ if(isNaN(length) === true){
   alert(`Please provide password length between 10 and 64 as a number`);
   return;
  }
+
  // Incase user does not pick correct number of characters.
  if (length < 10) {
   alert(`Password must be at least 10 characters`);
@@ -112,18 +113,22 @@ function getPasswordOptions() {
   return;
  }
 
- let hasSpecialCharacters = confirm (
+ let hasSpecialCharacters = confirm(
   "Click OK to confirm that the password must contain special characters"
  )
- let hasNumericCharacters = confirm (
+
+ let hasNumericCharacters = confirm(
   "Click OK to confirm that the password must contain numeric characters"
  )
- let hasLowerCaseCharacters = confirm (
+
+ let hasLowerCaseCharacters = confirm(
   "Click OK to confirm that the password must contain lowercase characters"
  )
- let hasUpperCaseCharacters = confirm (
+
+ let hasUpperCaseCharacters = confirm(
   "Click OK to confirm that the password must contain uppercase characters"
  )
+ 
 
 if(hasSpecialCharacters === false &&
   hasNumericCharacters === false &&
@@ -133,14 +138,14 @@ if(hasSpecialCharacters === false &&
     return;
   }
 
-  let getPasswordOptions ={
-    length:length,
+  let getPasswordOptions = {
+    length: length,
     hasSpecialCharacters: hasSpecialCharacters,
     hasNumericCharacters: hasNumericCharacters,
     hasLowerCaseCharacters: hasLowerCaseCharacters,
     hasUpperCaseCharacters: hasUpperCaseCharacters
   }
-console.log(getPasswordOptions);
+
 return getPasswordOptions;
 
 }
@@ -157,36 +162,44 @@ function getRandom(arr) {
 function generatePassword() {
  let options = getPasswordOptions();
  console.log(options);
+
  let result = []
+
  let possibleCharacters = []
+ 
  let guaranteedCharacters = []
 
-
- if(options["hasLowerCaseCharacters"]) {
-  possibleCharacters = possibleCharacters.concat(lowerCasedCharacters);
-  guaranteedCharacters.push(getRandom(lowerCasedCharacters))
- }
- if (options["hasLowerUpperCharacters"]) {
-  possibleCharacters = possibleCharacters.concat(UpperCasedCharacters);
-  guaranteedCharacters.push(getRandom(upperCasedCharacters))
- }
-if (options["hasSpecialCharacters"]) {
+ if (options.hasSpecialCharacters) {
   possibleCharacters = possibleCharacters.concat(specialCharacters);
   guaranteedCharacters.push(getRandom(specialCharacters))
  }
- if (options["hasNumericCharacters"]) {
+ if (options.hasNumericCharacters) {
   possibleCharacters = possibleCharacters.concat(numericCharacters);
   guaranteedCharacters.push(getRandom(numericCharacters))
  }
-
- for(let i = 0; i < options.length; i++) {
-  possibleCharacters = getRandom(possibleCharacters);
-  result.push(possibleCharacters);
-  console.log.apply(possibleCharacters);
+ if(options.hasLowerCaseCharacters) {
+  possibleCharacters = possibleCharacters.concat(lowerCasedCharacters);
+  guaranteedCharacters.push(getRandom(lowerCasedCharacters))
+ }
+ if (options.hasUpperCharacters) {
+  possibleCharacters = possibleCharacters.concat(upperCasedCharacters);
+  guaranteedCharacters.push(getRandom(upperCasedCharacters))
  }
 
- console.log(result);
+ console.log(possibleCharacters);
 
+ for(let i = 0; i < options.length; i++) {
+  var generatedNumbers = getRandom(possibleCharacters);
+  console.log(generatedNumbers);
+  result.push(generatedNumbers);
+ }
+
+ for(let i = 0; i < guaranteedCharacters.length; i++) {
+  result[i] = guaranteedCharacters[i];
+ }
+
+console.log(result);
+return result.join("")
 }
 
 // Get references to the #generate element
@@ -202,3 +215,4 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
+
